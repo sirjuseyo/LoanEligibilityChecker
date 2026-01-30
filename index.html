@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>대출가능성검사기</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-main">
+      <section class="hero-banner">
+        <img
+          src="assets/img/hero-loan-eligibility-checker_typeB.jpg"
+          alt="대출가능성검사기 이벤트 배너"
+        />
+      </section>
+      <section class="hero-banner">
+        <img
+          src="assets/img/loan-eligibility-checker-02.jpg"
+          alt="대출가능성검사기 안내 배너"
+        />
+      </section>
+      <section class="hero-banner">
+        <img
+          src="assets/img/loan-eligibility-checker-03.jpg"
+          alt="대출가능성검사기 안내 배너 2"
+        />
+      </section>
+      <section class="hero-banner">
+        <img
+          src="assets/img/loan-eligibility-checker-title.jpg"
+          alt="대출가능성검사기 타이틀"
+        />
+      </section>
+      <section class="page-intro">
+        <p id="liveClock" aria-live="polite">--:--:--</p>
+      </section>
+
+      <section class="tone-note" aria-live="polite">
+        <p class="tone-note-title">잠깐만 👀</p>
+        <p class="tone-note-body">
+          너도 MZ 나도 MZ. 초면인데 친한 척 음슴체, 반말, 짧게 말할게. 이해해줘 🙏😘
+        </p>
+      </section>
+
+      <form id="calculatorForm" class="form-grid">
+        <section class="panel">
+          <h2>① 🧮 신청 금액</h2>
+          <div class="field">
+            <label for="requestAmount">🏷️ 얼마면 돼!</label>
+            <select id="requestAmount" name="requestAmount">
+              <option disabled selected>💰 딱! 필요한 금액만</option>
+              <option disabled>100만 원 💎 VVIP 고객님 전용</option>
+              <option disabled>90만 원 💎 VVIP 고객님 전용</option>
+              <option disabled>70만 원 🥇 VIP 고객님 전용</option>
+              <option value="50">50만 원 🥇 VIP 고객님 전용</option>
+              <option value="30">30만 원 🥈 우수 고객님 전용</option>
+              <option value="20">20만 원 🥉 우대 고객님 전용</option>
+              <option value="10">10만 원 🎁 입문 고객님 전용</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="loanPeriod">🏷️ 얼마나 끌고 갈 거야?</label>
+            <select id="loanPeriod" name="loanPeriod">
+              <option disabled selected>🔥 우리는 짧고! 굵게!!</option>
+              <option value="30">1개월 (30일)</option>
+              <option disabled>2개월 (60일)</option>
+              <option disabled>3개월 (90일)</option>
+              <option disabled>상환일에 연장하기</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>② 🧾 대출 정보</h2>
+          <div class="field">
+            <label>🏷️ 대출 상품명</label>
+            <p class="static-value">1️⃣🈷️ 새해복🧧 대출</p>
+          </div>
+
+          <div class="field">
+            <label for="loanOption">🏷️ 대출 옵션</label>
+            <select id="loanOption" name="loanOption">
+              <option disabled selected>👍 대출이 특이하네!</option>
+              <option value="웨이팅 대출">웨이팅 대출</option>
+              <option value="롸잇나우 대출">롸잇나우 대출</option>
+              <option value="블랙찬스 티켓 사용">블랙찬스 티켓 사용</option>
+              <option value="이벤트 대출">이벤트 대출</option>
+            </select>
+          </div>
+
+          <div class="waiting-info-box hidden" id="waitingInfo">
+            <p class="info-row">
+              📅 신청 기간 별 포인트 할인과 인하가 다릅니다.
+            </p>
+            <div class="waiting-calendar">
+              <div class="calendar-header">
+                <div class="calendar-nav">
+                  <button type="button" id="calendarPrev" aria-label="이전 달">
+                    ◀
+                  </button>
+                  <span id="calendarMonthLabel">-</span>
+                  <button type="button" id="calendarNext" aria-label="다음 달">
+                    ▶
+                  </button>
+                </div>
+              </div>
+              <div class="calendar-weekdays">
+                <span>일</span>
+                <span>월</span>
+                <span>화</span>
+                <span>수</span>
+                <span>목</span>
+                <span>금</span>
+                <span>토</span>
+              </div>
+              <div class="calendar-grid" id="calendarGrid"></div>
+              <input type="date" id="loanDate" name="loanDate" class="hidden" />
+            </div>
+            <div class="waiting-details">
+              <ul class="waiting-key-list">
+                <li class="waiting-key-item">
+                  <span class="key-icon">✅</span>
+                  <span>
+                    웨이팅 대출 신청일 :
+                    <strong id="waitingDateText">2026년 1월 11일</strong>
+                  </span>
+                </li>
+                <li class="waiting-key-item">
+                  <span class="key-icon">🗓️</span>
+                  <span>
+                    웨이팅 대출 신청 기간 :
+                    <strong id="waitingPeriod">2026년 1월 11일 ~ 15일</strong>
+                  </span>
+                </li>
+                <li class="waiting-key-item">
+                  <span class="key-icon">🎟️</span>
+                  <span>
+                    웨이팅 대출 할인 좌석 :
+                    <strong id="discountSeat">Royal Seat (2열)</strong>
+                  </span>
+                </li>
+              </ul>
+              <ul class="waiting-sub-list">
+                <li>
+                  모든 상품의 크레딧 미션 할인율 :
+                  <span id="creditRange">50% ~ 25%</span>
+                </li>
+                <li>
+                  원리포 상품인 30만 원과 50만 원의 원금 미션 인하율 :
+                  <span id="wonmiRate">4%</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="option-guide option-guide-compact">
+            <h3>✅ 대출 옵션이 뭔가요?</h3>
+            <ol>
+              <li>
+                <strong>블랙찬스 티켓 사용</strong>
+                <span>👑 대접받고 싶다면 (포인트 적립 😻PASS)</span>
+              </li>
+              <li>
+                <strong>이벤트 대출</strong>
+                <span>🍀 소소한 로또를 원한다면,(포인트 적립 🐝배려)</span>
+                <p class="option-guide-note" id="eventAmountNote">
+                  * 단 20만 원과 30만 원만 선택 가능합니다.
+                </p>
+              </li>
+              <li>
+                <strong>롸잇나우 대출</strong>
+                <span>🚀 대출이 급하다면 (포인트 적립 🐶빡셈)</span>
+              </li>
+              <li>
+                <strong>웨이팅 대출</strong>
+                <span>😰 적립이 부담스럽다면 (포인트 적립 🐢널널)</span>
+              </li>
+            </ol>
+          </aside>
+
+          <div class="field">
+            <label for="loanHistory">🏷️ 대출 이력</label>
+            <select id="loanHistory" name="loanHistory"></select>
+          </div>
+
+          <div class="field">
+            <label for="loanStatus">🏷️ 대출 상태</label>
+            <select id="loanStatus" name="loanStatus"></select>
+          </div>
+
+          <aside class="option-guide option-guide-compact">
+            <h3>✅ 대출 이력과 상태는 뭔가요?</h3>
+            <ul class="option-guide-list">
+              <li>
+                <strong>웨이팅 &gt; 재대출</strong> : 이용 경험 있음
+                <ul>
+                  <li>Clean : 마지막 상환이 정상 상환</li>
+                  <li>Non-Clean : 마지막 상환이 연장, 연체 상환</li>
+                </ul>
+              </li>
+              <li>
+                <strong>웨이팅 &gt; 신규</strong> : 이용 경험 없음
+                <ul>
+                  <li>One : 오늘이 생애 처음 신청</li>
+                  <li>Several : 예전에 신청은 해 본 적 있음</li>
+                </ul>
+              </li>
+              <li>
+                <strong>롸잇나우 &gt; 모든 고객</strong> : 이용했던 안했던
+                <ul>
+                  <li>No Matter : 누구나 이용 가능</li>
+                </ul>
+              </li>
+              <li>
+                <strong>블랙찬스 &gt; 바로 재대출</strong> : 상환 후 바로 이용
+                <ul>
+                  <li>블찬원 : 원금 미션을 4%로 인하</li>
+                  <li>블찬이 : 30, 50만 원을 이포 상환 방식으로 이용</li>
+                  <li>블찬현 : 20, 30, 50만 원을 원리현 상환 방식으로 이용</li>
+                </ul>
+              </li>
+              <li>
+                <strong>이벤트 대출 &gt; 1월 한정 스페셜티</strong> : 바로 심사 가능
+                <ul>
+                  <li>붉은말 🔴🐎 대출 : 원금 미션 감면</li>
+                </ul>
+              </li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="panel">
+          <h2>③ 📋 신청 정보</h2>
+          <div class="field">
+            <label for="santaApply">🏷️ 1월 새해복 대출 신청했어?</label>
+            <select id="santaApply" name="santaApply">
+              <option disabled selected>
+                https://www.sirjuseyo.com/notice/024
+              </option>
+              <option value="신청했어.">신청했어.</option>
+              <option value="아직 안 했어. 바로 하고 올게.">
+                아직 안 했어. 바로 하고 올게.
+              </option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="appApply">🏷️ 앱에서 찍고 왔어?</label>
+            <select id="appApply" name="appApply">
+              <option disabled selected>써주세요. 어플 말하는거야.</option>
+              <option value="신청했어.">신청했어.</option>
+              <option value="아직 안 했어. 바로 하고 올게.">
+                아직 안 했어. 바로 하고 올게.
+              </option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="creditMission">🏷️ 크레딧 깼냐?</label>
+            <select id="creditMission" name="creditMission">
+              <option disabled selected>🎮 크레딧 미션 파서블!</option>
+              <option value="지금 🍞 포인트야. 부끄부끄 🙈">
+                지금 🍞 포인트야. 부끄부끄 🙈
+              </option>
+              <option value="응, 열띠미 적립 중 🔥">
+                응, 열띠미 적립 중 🔥
+              </option>
+              <option value="미션 클리어! 💯 츄카츄카츄카 🎉">
+                미션 클리어! 💯 츄카츄카츄카 🎉
+              </option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="communicationStatus">🏷️ 소통거리 던졌어?</label>
+            <select
+              id="communicationStatus"
+              name="communicationStatus"
+            >
+              <option disabled selected>📡 신용❌ 소통 공화국🙆</option>
+              <option value="낫 스타트. 아직 크레딧도 못 깼다니깐 😤">
+                낫 스타트. 아직 크레딧도 못 깼다니깐 😤
+              </option>
+              <option value="아이엔지. 지금 열띠미 자료 업로드 중 📤">
+                아이엔지. 지금 열띠미 자료 업로드 중 📤
+              </option>
+              <option value="디 엔드! 있는 자료 없는 자료 모두 업롣 끝! 🫡">
+                디 엔드! 있는 자료 없는 자료 모두 업롣 끝! 🫡
+              </option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="currentPoints">🏷️ 포인트 얼마나 쟁여놈?</label>
+            <input
+              type="text"
+              id="currentPoints"
+              name="currentPoints"
+              placeholder="빵(0) 포인트도 OK! 네이버페이 아님 주의~ 🫣"
+            />
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>④ ℹ️ 개인 정보</h2>
+          <div class="field">
+            <label for="userName">🏷️ 이름 뭐?</label>
+            <input type="text" id="userName" name="userName" placeholder="🆔 홍길동" />
+          </div>
+
+          <div class="field">
+            <label for="userBirth">🏷️ 민증 까</label>
+            <input type="text" id="userBirth" name="userBirth" placeholder="🪪 20000101" />
+          </div>
+
+          <div class="field">
+            <label for="userPhone">🏷️ 전번 딸까?</label>
+            <input
+              type="text"
+              id="userPhone"
+              name="userPhone"
+              placeholder="📱 01012345678"
+            />
+          </div>
+
+          <div class="field">
+            <label for="userDevice">🏷️ 핸펀 기종?</label>
+            <select id="userDevice" name="userDevice">
+              <option disabled selected>국뽕 VS 애플빠</option>
+              <option value="안드로이드">안드로이드</option>
+              <option value="아이폰">아이폰</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="userEmail">🏷️ 이멜 주소?</label>
+            <input
+              type="text"
+              id="userEmail"
+              name="userEmail"
+              placeholder="sirjuseyo@sirjuseyo.com"
+            />
+          </div>
+        </section>
+      </form>
+    </main>
+
+    <div class="action-area">
+      <button type="button" class="primary-button" id="calculateButton">
+        <img
+          src="assets/img/cta-loan-abracadabra.jpg"
+          alt="대출 나와라, 뚝딱!"
+        />
+      </button>
+      <p id="recalcNote" class="recalc-note hidden">🪄 선택(입력) 항목을 변경하면, '뚝딱!' 다시 눌러!</p>
+    </div>
+
+    <section class="result-panel hidden" id="resultPanel">
+      <h2>🧮 미션 포인트 안내</h2>
+      <div class="result-grid">
+        <div class="result-field">
+          <span id="benefitTitle">✨ 웨이팅 대출의 가장 큰 혜택</span>
+          <p id="benefitLine1">부담스런 포인트 적립이 🐶널널!</p>
+          <p id="benefitLine2">빠른 대출과 한도 상향 가산점</p>
+          <p id="benefitLine3">50만 원을 크레딧 미션만으로!</p>
+          <p id="benefitLine4">빠른 대출과 원금 미션 감면!</p>
+        </div>
+        <div class="result-field">
+          <span>1️⃣🈷️ 새해복🧧 대출 신청 정보</span>
+          <p id="resultAmount">금액 : 30만 원</p>
+          <p id="resultPeriod">기간 : 1개월 (30일)</p>
+          <p id="resultOption">대출 옵션 : 웨이팅 대출</p>
+          <p id="resultSeat" class="hidden">좌석명 : -</p>
+          <p id="resultHistory">대출 이력 : 재대출</p>
+          <p id="resultStatus">대출 상태 : Clean</p>
+          <p id="resultRepayment">
+            상환 방식 : 원리포 상품 (원금의 일부와 이자를 포인트로 상환)
+          </p>
+        </div>
+        <div class="result-field">
+          <span>🗓️ 심사 기간</span>
+          <p id="reviewPeriod">2026년 2월 1일 ~ 5일 / 매일</p>
+        </div>
+        <div class="result-field">
+          <span>🧩 크레딧 미션 (크미)</span>
+          <p id="creditSummary">Clean, 45% 할인</p>
+          <p id="creditPointsLine">6,000포 → 3,300🅿</p>
+        </div>
+        <div class="result-field">
+          <span>💸 이자 미션 (이미)</span>
+          <p id="interestRateLine">1%</p>
+          <p id="interestPointsLine">3,000🅿</p>
+        </div>
+        <div class="result-field">
+          <span>🏦 원금 미션 (원미)</span>
+          <p id="principalRateLine">10% → 2%</p>
+          <p id="principalPointsLine">30,000포 → 6,300🅿</p>
+        </div>
+        <div class="result-field">
+          <span>🟰 총 필요 포인트</span>
+          <p id="totalPointsLine">12,300🅿</p>
+        </div>
+        <div class="result-field">
+          <span>🛢️ 현재 보유 포인트</span>
+          <p id="currentPointsLine">20,978🅿</p>
+        </div>
+        <div class="result-field">
+          <span>➕ 추가 포인트</span>
+          <p id="additionalPointsLine">적립 필요 없음 / 20,978🅿 적립 필요</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="scriptPreview" class="script-label">
+          <span class="label-line">자, 이제부터 주목 ✊</span>
+          <span class="label-line">✅ 반.드.시. 아래 내용을 체크하세요.</span>
+          <span class="label-line">
+            아래 내용 중 🅿 앞 포인트를 체크하지 않으면, 나중에 고객님만 대출 못 받는 사태가 발생합니다.
+          </span>
+        </label>
+        <div class="result-field script-box">
+          <div class="script-section">
+            <p class="script-step" id="step1">✅ ⓵ 1️⃣🈷️ 새해복🧧 대출 신청 완료 / 완료하세요.</p>
+            <p class="script-step" id="step2">☑️ ⓶ 써주세요. 앱에서 30만 원과 1개월(30일) 신청 완료 / 완료하세요.</p>
+            <div class="script-step-group">
+              <p class="script-step" id="step3">✅ ⓷ 앱에서 크미 (3,300🅿) 완료 / 완료하세요</p>
+              <ul class="script-sublist">
+                <li id="step3Deadline">신청 후 48시간 이내</li>
+              </ul>
+            </div>
+            <div class="script-step-group">
+              <p class="script-step" id="step4">☑️ ⓸ 앱에서 소통거리 미션 완료 / 완료하세요. (= 심사 자료 제출)</p>
+              <ul class="script-sublist">
+                <li id="step4Deadline">크미 완료 후 48시간 이내</li>
+                <li class="script-warning" id="step4Warning">
+                  ⚠️⚠️⚠️여기까지 했다면 앱에선 '검토중'으로 보이겠지만, 실제로는
+                  검토를 안 합니다. 아래 ⓹번까지 완료해야 2026년 1월 1일 ~ 5일에
+                  검토 시작됩니다.⚠️⚠️⚠️
+                </li>
+              </ul>
+            </div>
+            <div class="script-step-group">
+              <p class="script-step" id="step5">✅ ⓹ 포인트 상환 미션(이미 + 원미) 완료 / 완료하세요.</p>
+              <ul class="script-sublist">
+                <li id="step5Interest">이자 미션, 이미 (1%) : 3,000🅿</li>
+                <li id="step5Principal">원금 미션, 원미 (10% → 2%) : 30,000포 → 6,000🅿</li>
+                <li id="step5Deadline">적립 기한 : 2025년 12월 20일까지❗️</li>
+                <li class="script-warning" id="step5Warning">
+                  ⚠️⚠️⚠️앱에선 포인트 상환 미션이 따로 보이지 않으니, 포인트
+                  적립소에서 적립하시면 됩니다.⚠️⚠️⚠️
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="script-divider"></div>
+
+          <div class="script-section">
+            <p class="script-title">🔥 대출 심사 기간에 대출을 빨리 받고 싶다면, 명심하세요! 🔥</p>
+            <div class="script-summary-box">
+              <p class="script-subtitle">☝️ 첫 번째. [미션 포인트 적립]</p>
+              <ul class="script-list">
+                <li id="summaryCredit">크미 (45% 할인) : 3,300🅿</li>
+                <li id="summaryInterest">이자 미션, 이미 (1%) : 3,000🅿</li>
+                <li id="summaryPrincipal">원금 미션, 원미 (10% → 2%) : 30,000포 → 6,000🅿</li>
+                <li id="summaryTotal">🟰 총 12,300🅿 필요</li>
+                <li id="summaryCurrent">🛢️ 현재 20,978🅿 보유</li>
+                <li id="summaryAdditional">➕ 추가 포인트 적립 필요 없음</li>
+              </ul>
+            </div>
+            <p class="script-warning">
+              🚨 소통거리 제출 그리고 모든 미션 포인트 적립 후에, 반드시 '포인트
+              상환 미션 완료' 라고 💬톡 주셔야 심사 순번 받으십니다.
+            </p>
+          </div>
+
+          <div class="script-section hidden" id="pointSubscribeSection">
+            <div class="script-summary-box">
+              <p class="script-subtitle">✌️ 두 번째. [포인트 구독]</p>
+              <ul class="script-list">
+                <li class="script-list-nowrap">시작일:&nbsp;<span id="subscribeStartDate">2026.01.18</span></li>
+                <li>종료일 : 승인 후 &amp; 입금일까지</li>
+                <li>써주세요. 앱 &gt; 포인트 적립소 방문</li>
+                <li>매일 최소 10포인트 이상 적립</li>
+                <li>미적립 : 구독 깨짐 방지 보호막 ☢️ 1회 제공❗️</li>
+                <li>
+                  미적립 페널티 : 미적립 다음날은 보상으로 무조건 최소 100포인트를
+                  적립해야 합니다.
+                </li>
+                <li>구독 깨짐 : 다음날 최소 100포를 적립하지 않으면 구독은 깨집니다.</li>
+                <li>
+                  구독이 깨지면 모든 미션 포인트를 적립했다고 해도, 대출 신청 건은
+                  자동 취소 &amp; 거절 처리됩니다.
+                </li>
+                <li>
+                  미션 포인트를 모두 적립했어도, 포인트 구독은 입금일까지 유지해
+                  주셔야 합니다.
+                </li>
+                <li>
+                  ❗️구독 시그널 : 오늘부터 매일 하루에 최소 10포인트 이상 적립 후에
+                  '2025-11-01(적립 날짜), 구독 완료' 그리고 스크린샷 첨부 ...... 라고
+                  이런 형식으로 매일 날짜별로 톡을 주셔야 합니다.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="script-summary-box script-hint-box hidden" id="pointHintBox">
+            <p class="script-subtitle">😓 포인트 적립이 빡세다 싶으면,</p>
+            <ul class="script-list">
+              <li>❶ 금액은 원리현 상품인 10만 원</li>
+              <li>❷ 대출 옵션은 웨이팅 대출</li>
+              <li>❸ 신청 시기는 매월 26일 ~ 익월 5일 (BOX Seat 귀빈석)</li>
+            </ul>
+            <p class="script-note">
+              ❗️크레딧 미션만 있고 크레딧 미션이 최대 50%까지 할인되어, 포인트 적립이 가장 안 빡셉니다!
+            </p>
+          </div>
+
+          <div class="script-cta">
+            <a
+              class="script-cta-button"
+              href="https://www.sirjuseyo.com/notice/024"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="assets/img/cta-newyear-lucky-loan-apply_typeB.jpg"
+                alt="1️⃣🈷️ 새해복🧧 대출 신청하기"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
