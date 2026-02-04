@@ -50,11 +50,11 @@ const LOAN_CONFIG = {
   "이벤트 대출": {
     basePoints: { credit: 35, interest: 27, principal: 28 },
     histories: {
-      "1월 한정 스페셜티": {
+      "2월 한정 스페셜티": {
         interestBonus: 5,
         principalBonus: 4,
         statuses: {
-          "붉은말 🔴🐎 대출": 8,
+          "세뱃돈 🙇🏻‍♂️💸 대출": 8,
         },
       },
     },
@@ -64,53 +64,53 @@ const LOAN_CONFIG = {
 const WAITING_SEAT_RANGES = [
   {
     seat: "Box Seat (귀빈석)",
-    startDate: "2026-01-01",
-    endDate: "2026-01-05",
+    startDate: "2026-02-01",
+    endDate: "2026-02-05",
     creditDeadline: "앱에서 신청한 날로부터 48시간 내",
     interestRate: "1%",
-    interestDeadline: "2026-01-15",
+    interestDeadline: "2026-02-15",
     principalRate: "1%",
-    principalDeadline: "2026-01-15",
+    principalDeadline: "2026-02-15",
   },
   {
     seat: "VIP Seat (1열)",
-    startDate: "2026-01-06",
-    endDate: "2026-01-10",
+    startDate: "2026-02-06",
+    endDate: "2026-02-10",
     creditDeadline: "앱에서 신청한 날로부터 48시간 내",
     interestRate: "1%",
-    interestDeadline: "2026-01-20",
+    interestDeadline: "2026-02-20",
     principalRate: "2%",
-    principalDeadline: "2026-01-20",
+    principalDeadline: "2026-02-20",
   },
   {
     seat: "Royal Seat (2열)",
-    startDate: "2026-01-11",
-    endDate: "2026-01-15",
+    startDate: "2026-02-11",
+    endDate: "2026-02-15",
     creditDeadline: "앱에서 신청한 날로부터 48시간 내",
     interestRate: "1%",
-    interestDeadline: "2026-01-25",
+    interestDeadline: "2026-02-25",
     principalRate: "4%",
-    principalDeadline: "2026-01-25",
+    principalDeadline: "2026-02-25",
   },
   {
     seat: "Standard Seat (3열)",
-    startDate: "2026-01-16",
-    endDate: "2026-01-20",
+    startDate: "2026-02-16",
+    endDate: "2026-02-20",
     creditDeadline: "앱에서 신청한 날로부터 48시간 내",
     interestRate: "1%",
-    interestDeadline: "2026-01-30",
+    interestDeadline: "2026-02-28",
     principalRate: "6%",
-    principalDeadline: "2026-01-30",
+    principalDeadline: "2026-02-28",
   },
   {
     seat: "Original Seat (입석)",
-    startDate: "2026-01-21",
-    endDate: "2026-01-25",
+    startDate: "2026-02-21",
+    endDate: "2026-02-25",
     creditDeadline: "앱에서 신청한 날로부터 48시간 내",
     interestRate: "1%",
-    interestDeadline: "2026-02-05",
+    interestDeadline: "2026-03-05",
     principalRate: "8%",
-    principalDeadline: "2026-02-05",
+    principalDeadline: "2026-03-05",
   },
 ];
 
@@ -177,7 +177,7 @@ const LOAN_OPTION_STATUS_TABLE = {
     "바로 재대출": ["블찬원", "블찬이", "블찬현"],
   },
   "이벤트 대출": {
-    "1월 한정 스페셜티": ["붉은말 🔴🐎 대출"],
+    "2월 한정 스페셜티": ["세뱃돈 🙇🏻‍♂️💸 대출"],
   },
 };
 
@@ -186,29 +186,29 @@ const LOAN_REVIEW_SCHEDULE = [
     option: "웨이팅 대출",
     history: "재대출",
     status: "Clean",
-    startDate: "2026-02-01",
-    endDate: "2026-02-05",
+    startDate: "2026-03-01",
+    endDate: "2026-03-05",
   },
   {
     option: "웨이팅 대출",
     history: "재대출",
     status: "Non-Clean",
-    startDate: "2026-02-01",
-    endDate: "2026-02-05",
+    startDate: "2026-03-01",
+    endDate: "2026-03-05",
   },
   {
     option: "웨이팅 대출",
     history: "신규",
     status: "One",
-    startDate: "2026-02-01",
-    endDate: "2026-02-05",
+    startDate: "2026-03-01",
+    endDate: "2026-03-05",
   },
   {
     option: "웨이팅 대출",
     history: "신규",
     status: "Several",
-    startDate: "2026-02-01",
-    endDate: "2026-02-05",
+    startDate: "2026-03-01",
+    endDate: "2026-03-05",
   },
   {
     option: "롸잇나우 대출",
@@ -235,13 +235,13 @@ const LOAN_REVIEW_SCHEDULE = [
     option: "블랙찬스 티켓",
     history: "바로 재대출",
     status: "블찬현",
-    startDate: "2026-02-01",
-    endDate: "2026-02-05",
+    startDate: "2026-03-01",
+    endDate: "2026-03-05",
   },
   {
     option: "이벤트 대출",
-    history: "1월 한정 스페셜티",
-    status: "붉은말 🔴🐎 대출",
+    history: "2월 한정 스페셜티",
+    status: "세뱃돈 🙇🏻‍♂️💸 대출",
     startDate: "매일",
     endDate: "",
   },
@@ -305,7 +305,8 @@ const POINT_SUMMARY_RAW = `
 20만 원	200,000	이포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬원	원리포 상품	5,000	0%	5000	1%	2,000	1%	2,000	10%	20,000	4%	8,000	15,000
 20만 원	200,000	이포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬이	이포 상품	5,000	0%	5000	1%	2,000	1%	2,000	0%	0	0%	0	7,000
 20만 원	200,000	이포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬현	원리현 상품	5,000	0%	5000	0%	0	0%	0	0%	0	0%	0	5,000
-20만 원	200,000	이포 상품	이벤트 대출	Special Seat (특별석)	1월 한정 스페셜티	붉은말 🔴🐎 대출	이포 상품	8,000	0%	8000	1%	2,000	1%	2,000	0%	0	0%	0	10,000
+10만 원	100,000	원리현 상품	이벤트 대출	Special Seat (특별석)	2월 한정 스페셜티	세뱃돈 🙇🏻‍♂️💸 대출	이포 상품	5,000	0%	5,000	1%	1,000	1%	1,000	10%	10,000	0%	0	6,000
+20만 원	200,000	이포 상품	이벤트 대출	Special Seat (특별석)	2월 한정 스페셜티	세뱃돈 🙇🏻‍♂️💸 대출	이포 상품	8,000	0%	8,000	1%	2,000	1%	2,000	0%	0	0%	0	10,000
 30만 원	300,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	재대출	Clean	원리포 상품	6,000	50%	3,000	1%	3,000	1%	3,000	10%	30,000	1%	3,000	9,000
 30만 원	300,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	재대출	Non-Clean	원리포 상품	6,000	25%	4,500	1%	3,000	1%	3,000	10%	30,000	1%	3,000	10,500
 30만 원	300,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	신규	One	원리포 상품	6,000	40%	3,600	1%	3,000	1%	3,000	10%	30,000	1%	3,000	9,600
@@ -330,7 +331,7 @@ const POINT_SUMMARY_RAW = `
 30만 원	300,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬원	원리포 상품	6,000	0%	6000	1%	3,000	1%	3,000	10%	30,000	4%	12,000	21,000
 30만 원	300,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬이	이포 상품	6,000	0%	6000	1%	3,000	1%	3,000	0%	0	0%	0	9,000
 30만 원	300,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬현	원리현 상품	6,000	0%	6000	0%	0	0%	0	0%	0	0%	0	6,000
-30만 원	300,000	원리포 상품	이벤트 대출	Special Seat (특별석)	1월 한정 스페셜티	붉은말 🔴🐎 대출	이포 상품	12,000	0%	12000	1%	3,000	1%	3,000	0%	0	0%	0	15,000
+30만 원	300,000	원리포 상품	이벤트 대출	Special Seat (특별석)	2월 한정 스페셜티	세뱃돈 🙇🏻‍♂️💸 대출	이포 상품	12,000	0%	12,000	1%	3,000	1%	3,000	10%	30,000	0%	0	15,000
 50만 원	500,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	재대출	Clean	원리포 상품	12,000	50%	6,000	1%	5,000	1%	5,000	10%	50,000	1%	5,000	16,000
 50만 원	500,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	재대출	Non-Clean	원리포 상품	12,000	25%	9,000	1%	5,000	1%	5,000	10%	50,000	1%	5,000	19,000
 50만 원	500,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	신규	One	원리포 상품	12,000	40%	7,200	1%	5,000	1%	5,000	10%	50,000	1%	5,000	17,200
@@ -355,6 +356,7 @@ const POINT_SUMMARY_RAW = `
 50만 원	500,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬원	원리포 상품	12,000	0%	12,000	1%	5,000	1%	5,000	10%	50,000	4%	20,000	37,000
 50만 원	500,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬이	이포 상품	12,000	0%	12,000	1%	5,000	1%	5,000	0%	0	0%	0	17,000
 50만 원	500,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬현	원리현 상품	12,000	0%	12,000	0%	0	0%	0	0%	0	0%	0	12,000
+50만 원	500,000	원리포 상품	이벤트 대출	Special Seat (특별석)	2월 한정 스페셜티	세뱃돈 🙇🏻‍♂️💸 대출	이포 상품	20,000	0%	20,000	1%	5,000	1%	5,000	10%	50,000	0%	0	25,000
 `
 ;
 
@@ -664,18 +666,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateEventOptionAvailability() {
     if (!eventOption) return;
 
-    const amountValue = requestAmount.value;
-    const shouldDisable =
-      amountValue === "10" || amountValue === "50";
-
-    eventOption.disabled = shouldDisable;
-
+    eventOption.disabled = false;
     if (eventAmountNote) {
-      eventAmountNote.style.display = shouldDisable ? "block" : "none";
-    }
-
-    if (shouldDisable && loanOption.value === "이벤트 대출") {
-      loanOption.selectedIndex = 0;
+      eventAmountNote.style.display = "block";
     }
   }
 
@@ -1122,7 +1115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (status.includes("블찬원") || status.includes("4%원")) return "블찬원";
     if (status.includes("블찬이") || status.includes("블변이")) return "블찬이";
     if (status.includes("블찬현") || status.includes("블현")) return "블찬현";
-    if (status.includes("붉은말")) return "붉은말 🔴🐎 대출";
+    if (status.includes("세뱃돈")) return "세뱃돈 🙇🏻‍♂️💸 대출";
     return status;
   }
 
@@ -1213,7 +1206,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return [
       `안녕하세요 ${displayName} 😊`,
-      `새해복 대출 ${state.loanOption} 조건으로 ${state.requestAmount}만원 (${periodText}) 접수 상태를 안내드립니다.`,
+      `설날 대출 ${state.loanOption} 조건으로 ${state.requestAmount}만원 (${periodText}) 접수 상태를 안내드립니다.`,
       `현재 미션 포인트는 총 ${result.total}점이며, 추가 적립 필요 포인트는 ${result.additional}점입니다.`,
       state.rudolphSpecial
         ? "루돌프 스페셜티가 적용되어 일부 미션이 선반영되었습니다."
@@ -1407,7 +1400,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (step1) {
       const done = santaApply.value.includes("신청했어");
       step1.textContent = formatChecklistLine(
-        "⓵ 1️⃣🈷️ 새해복🧧 대출 신청",
+        "⓵ 2️⃣🈷️ 설날🧧 대출 신청",
         "완료",
         "완료하세요.",
         done
