@@ -204,6 +204,12 @@ body {
   color: var(--muted);
 }
 
+.option-guide-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 10px 0;
+}
+
 .option-guide-compact {
   margin-top: 12px;
   background: #f9fbff;
